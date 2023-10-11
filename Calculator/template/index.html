@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+  <title> {% block title %}{% endblock title %}Project</title>
+</head>
+
+<body>
+  <!-- Start Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">
+      <h2 style="font-family: 'Roboto Slab', serif;letter-spacing: 4px; font-size: 40px;"><b>CALCULATOR</b></h2>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" style="margin-right: 6rem; font-size: larger;">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item" style="margin-right: 6rem; font-size: larger;">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item" style="margin-right: 6rem; font-size: larger;">
+          <a class="nav-link" href="#instruction">Instruction</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
+
+  {% block body %}{% endblock body %}
+  {% load static %}
+  <!-- Start Form -->
+  <h1 style="text-align: center; margin-top: 6rem; font-family: 'Merriweather', serif;">Welcome To Calculator App</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" style=" margin : 2rem auto">
+        {% if error %}
+        <div class="row">
+          <div class="col-md-12" style="margin: 0 auto;">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% if result %}
+        <div class="row">
+          <div class="col-md-12" style="margin: 0 auto;">
+            <div class="alert alert-success" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="alert-heading">Well done!</h4>
+              <p>Aww yeah, you successfully entered answer. Your answer is : </p>
+              <hr>
+              <p class="mb-0"> {{q}} = {{ans}} </p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <div style="margin: 1rem 0 0 32rem;">
+    <img src="/static/1.jpg">
+  </div>
+  <div class="container-fluid" style="margin-bottom: 12rem;">
+    <div class="row">
+      <div class="col-md-6" style="margin: 1rem 0 15rem 23rem;">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-12">
+              <form method="GET" action="{% url 'submitquery' %}">
+                <div class="form-group">
+
+                  <h3 class="text-center" style="margin: 1rem auto 4rem auto; font-family: 'Merriweather', serif;">Enter
+                    your query</h3>
+                  <input type="search" class="form-control" name="query" id="query">
+                </div>
+                <input type="submit" class="btn btn-outline-success">
+                <input type="reset" class="btn btn-outline-danger" style="margin-left: 32rem;">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End From -->
+
+  <!-- About Section -->
+  <div class="card text-center">
+    <div class="card-header" id="about" style="font-family: 'Ubuntu', sans-serif;">
+      <h2 style="font-size: 30px;"><b>About</b></h2>
+    </div>
+  </div>
+  <div class="card-body" style="margin: 8rem 0 20rem 0;">
+    <div class="container text-center">
+      <p>This is my about page of my first Calculator app and I really to making this website for the first time. <br>
+        Now, what you can do in this app you can do every mathematical problem.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- End About Section -->
+
+  <!-- Start Footer -->
+  <footer>
+    <div class="card text-center">
+      <div class="card-header" id="instruction" style="font-family: 'Ubuntu', sans-serif;">
+        <h2 style="font-size: 30px;"><b>Instruction</b></h2>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif;"><b>* Instruction about Calculator *</b></h5>
+        <div class="col-6" style="margin: 2rem auto 1rem auto;">
+          <ul class="list-group">
+            <li class="list-group-item">+ Addition</li>
+            <li class="list-group-item">- Substraction</li>
+            <li class="list-group-item">* Multiplication</li>
+            <li class="list-group-item">/ Division</li>
+            <li class="list-group-item">// Floor Division</li>
+            <li class="list-group-item">** Exponential Power</li>
+            <li class="list-group-item">% Modulus</li>
+            <li class="list-group-item">() Parentheses</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        copyrights © 2021 Calculator app. All rights reserved
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
